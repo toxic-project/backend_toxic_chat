@@ -15,7 +15,6 @@ public class TransactionBl {
         this.transactionDao = transactionDao;
     }
 
-
     public Transaction createTransaction (Transaction transaction){
         this.transactionDao.create(transaction);
         Integer lastPrimaryKey= this.transactionDao.getLastInsertId();

@@ -4,9 +4,7 @@ import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.comprehend.AmazonComprehend;
 import com.amazonaws.services.comprehend.AmazonComprehendClientBuilder;
-import com.amazonaws.services.comprehend.model.DetectEntitiesRequest;
-import com.amazonaws.services.comprehend.model.DetectEntitiesResult;
-import com.amazonaws.services.comprehend.model.Entity;
+import com.amazonaws.services.comprehend.model.*;
 import com.ucb.bo.ToxicChat.api.ComprenhendApi;
 import com.ucb.bo.ToxicChat.dao.ComprenhendDao;
 import com.ucb.bo.ToxicChat.dto.TextRequest;
@@ -40,12 +38,20 @@ public class ComprenhendBl {
         return entitiesList;
     }
 
+    public SentimentScore detectsentiment(TextRequest textRequest){
+        DetectSentimentRequest detectSentimentRequest = new DetectSentimentRequest().withText(trimByBytes(textRequest.getText(),5000))
+                .withLanguageCode("es");
+        DetectSentimentResult detectSentimentResult = comprehendClient().detectSentiment(detectSentimentRequest);
+        SentimentScore sentimentList = detectSentimentResult.getSentimentScore();
+        return sentimentList;
+    }
+
     /************* Step 2 *******************
      ** Initialize Amazon Comprehend Client
      **************************************/
     AmazonComprehend comprehendClient() {
         log.debug("Intialize Comprehend Client");
-        BasicAWSCredentials awsCreds = new BasicAWSCredentials("xxxxxxxxxxxxxxxxxxxx", "xxxxxxxxxxxxxxxxxxxxxxxxxx");
+        BasicAWSCredentials awsCreds = new BasicAWSCredentials("AKIASTMWE3ADLTB7A4KE", "1+sTOnPPVwb4dooGPe8aX/QH4zwVE7Buu6miRRDu");
         AWSStaticCredentialsProvider awsStaticCredentialsProvider = new AWSStaticCredentialsProvider(awsCreds);
         return AmazonComprehendClientBuilder.standard().withCredentials(awsStaticCredentialsProvider)
                 .withRegion("us-east-2").build();

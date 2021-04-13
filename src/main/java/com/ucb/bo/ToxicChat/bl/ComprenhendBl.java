@@ -51,7 +51,7 @@ public class ComprenhendBl {
      **************************************/
     AmazonComprehend comprehendClient() {
         log.debug("Intialize Comprehend Client");
-        BasicAWSCredentials awsCreds = new BasicAWSCredentials("AKIASTMWE3ADLTB7A4KE", "1+sTOnPPVwb4dooGPe8aX/QH4zwVE7Buu6miRRDu");
+        BasicAWSCredentials awsCreds = new BasicAWSCredentials("xxxxxxxxxxxxxxxx", "xxxxxxxxxxxxxxxxxx");
         AWSStaticCredentialsProvider awsStaticCredentialsProvider = new AWSStaticCredentialsProvider(awsCreds);
         return AmazonComprehendClientBuilder.standard().withCredentials(awsStaticCredentialsProvider)
                 .withRegion("us-east-2").build();

@@ -23,7 +23,7 @@ import java.util.*;
 @RequestMapping(value = "")
 public class ComprenhendApi {
 
-//    private TransactionBl transactionBl;
+    private TransactionBl transactionBl;
     private ComprenhendBl comprenhendBl;
     private static final Logger log = LoggerFactory.getLogger(ComprenhendApi.class);
 
@@ -33,10 +33,10 @@ public class ComprenhendApi {
     }
 
 
-//    public ComprenhendApi(TransactionBl transactionBl, ComprenhendBl comprenhendBl) {
-//        this.transactionBl = transactionBl;
-//        this.comprenhendBl = comprenhendBl;
-//    }
+    public ComprenhendApi(TransactionBl transactionBl, ComprenhendBl comprenhendBl) {
+        this.transactionBl = transactionBl;
+        this.comprenhendBl = comprenhendBl;
+    }
 
     @RequestMapping(value = "/hey",method = RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Entity> detectEntitiesWithComprehend(@RequestBody TextRequest text, HttpServletRequest request) {

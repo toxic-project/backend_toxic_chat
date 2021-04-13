@@ -24,13 +24,13 @@ import java.util.List;
 
 @Service
 public class ComprenhendBl {
-//    private ComprenhendDao comprenhendDao;
+    private ComprenhendDao comprenhendDao;
     private static final Logger log = LoggerFactory.getLogger(ComprenhendApi.class);
 
-//    @Autowired
-//    public ComprenhendBl(ComprenhendDao comprenhendDao) {
-//        this.comprenhendDao = comprenhendDao;
-//    }
+    @Autowired
+    public ComprenhendBl(ComprenhendDao comprenhendDao) {
+        this.comprenhendDao = comprenhendDao;
+    }
 
     public List<Entity> detecentities(TextRequest textRequest){
         DetectEntitiesRequest detectEntitiesRequest = new DetectEntitiesRequest().withText(trimByBytes(textRequest.getText(),5000))
@@ -45,7 +45,7 @@ public class ComprenhendBl {
      **************************************/
     AmazonComprehend comprehendClient() {
         log.debug("Intialize Comprehend Client");
-        BasicAWSCredentials awsCreds = new BasicAWSCredentials("AKIASTMWE3ADLTB7A4KE", "1+sTOnPPVwb4dooGPe8aX/QH4zwVE7Buu6miRRDu");
+        BasicAWSCredentials awsCreds = new BasicAWSCredentials("xxxxxxxxxxxxxxxxxxxx", "xxxxxxxxxxxxxxxxxxxxxxxxxx");
         AWSStaticCredentialsProvider awsStaticCredentialsProvider = new AWSStaticCredentialsProvider(awsCreds);
         return AmazonComprehendClientBuilder.standard().withCredentials(awsStaticCredentialsProvider)
                 .withRegion("us-east-2").build();

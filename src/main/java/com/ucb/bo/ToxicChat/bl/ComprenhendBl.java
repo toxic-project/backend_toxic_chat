@@ -8,6 +8,7 @@ import com.amazonaws.services.comprehend.model.*;
 import com.ucb.bo.ToxicChat.api.ComprenhendApi;
 import com.ucb.bo.ToxicChat.dao.ComprenhendDao;
 import com.ucb.bo.ToxicChat.dto.TextRequest;
+import com.ucb.bo.ToxicChat.util.KeyAmazon;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,7 @@ public class ComprenhendBl {
         this.comprenhendDao = comprenhendDao;
     }
 
+
     public List<Entity> detecentities(TextRequest textRequest){
         DetectEntitiesRequest detectEntitiesRequest = new DetectEntitiesRequest().withText(trimByBytes(textRequest.getText(),5000))
                 .withLanguageCode("es");
@@ -50,8 +52,9 @@ public class ComprenhendBl {
      ** Initialize Amazon Comprehend Client
      **************************************/
     AmazonComprehend comprehendClient() {
-        log.debug("Intialize Comprehend Client");
-        BasicAWSCredentials awsCreds = new BasicAWSCredentials("xxxxxxxxxxxxxxxx", "xxxxxxxxxxxxxxxxxx");
+        KeyAmazon keys = new KeyAmazon();
+        log.info(keys.getKey());
+        BasicAWSCredentials awsCreds = new BasicAWSCredentials(keys.getKey(), keys.getSecret());
         AWSStaticCredentialsProvider awsStaticCredentialsProvider = new AWSStaticCredentialsProvider(awsCreds);
         return AmazonComprehendClientBuilder.standard().withCredentials(awsStaticCredentialsProvider)
                 .withRegion("us-east-2").build();

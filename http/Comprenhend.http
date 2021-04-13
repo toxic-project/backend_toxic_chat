@@ -1,9 +1,9 @@
-POST http://localhost:8080/hey
+POST http://localhost:8080/sentiment
 Accept: application/json
 Content-Type: application/json
 
 {
-  "text":"Te quiero desde el día en que hablamos por primera vez, es por eso que eres más que especial para mí. Gracias por estar siempre ahí y por ser parte de mi vida."
+  "text":"Bendiciones a toda tu familia"
 }
 
 

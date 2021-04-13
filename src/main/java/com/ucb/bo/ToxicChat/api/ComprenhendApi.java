@@ -48,8 +48,8 @@ public class ComprenhendApi {
     @RequestMapping(value = "/sentiment",method = RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public SentimentScore detectSentimentsWithComprehend(@RequestBody TextRequest text, HttpServletRequest request) {
         log.debug("Method to Detect Entities With Amazon Comprehend {}");
-        Transaction transaction = TransactionUtil.createTransaction(request);
-        transactionBl.createTransaction(transaction);
+//        Transaction transaction = TransactionUtil.createTransaction(request);
+//        transactionBl.createTransaction(transaction);
         return comprenhendBl.detectsentiment(text);
 
     }

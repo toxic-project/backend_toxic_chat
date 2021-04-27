@@ -36,7 +36,7 @@ public class ComprenhendApi {
         this.comprenhendBl = comprenhendBl;
     }
 
-    @RequestMapping(value = "/entities",method = RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/entities", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Entity> detectEntitiesWithComprehend(@RequestBody TextRequest text, HttpServletRequest request) {
         log.debug("Method to Detect Entities With Amazon Comprehend {}");
         Transaction transaction = TransactionUtil.createTransaction(request);
@@ -45,7 +45,7 @@ public class ComprenhendApi {
 
     }
 
-    @RequestMapping(value = "/sentiment",method = RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/sentiment", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public SentimentScore detectSentimentsWithComprehend(@RequestBody TextRequest text, HttpServletRequest request) {
         log.debug("Method to Detect Entities With Amazon Comprehend {}");
 //        Transaction transaction = TransactionUtil.createTransaction(request);
@@ -54,5 +54,11 @@ public class ComprenhendApi {
 
     }
 
+    // ONLY TESTING
+    @RequestMapping(value = "/keys", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public String getKeys() {
+        return System.getenv("S3_KEY") + " " + System.getenv("S3_SECRET");
+
+    }
 
 }

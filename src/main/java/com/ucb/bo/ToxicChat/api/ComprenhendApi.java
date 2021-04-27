@@ -57,8 +57,8 @@ public class ComprenhendApi {
     // ONLY TESTING
     @RequestMapping(value = "/keys", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public String getKeys() {
-        return System.getenv("S3_KEY") + " " + System.getenv("S3_SECRET");
-
+        return System.getenv("CLEARDB_DATABASE_URL");
+//        + " " + System.getenv("S3_SECRET");
     }
 
 }

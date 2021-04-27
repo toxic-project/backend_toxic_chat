@@ -7,11 +7,11 @@ spring:
     #    url: jdbc:mysql://us-cdbr-east-03.cleardb.com:3306/heroku_3ed503f241cf319?reconnect=true
     #    username: b719f422f2686b
     #    password: 8f19507c
-    name: xMarket_database
+    name: heroku_5cdec0192cfaf15
     platform: mysql
-    url: jdbc:mysql://localhost:3306/xMarket_database
-    username: root
-    password: ABCabc123
+    url: jdbc:mysql://us-cdbr-east-03.cleardb.com/heroku_5cdec0192cfaf15?reconnect=true
+    username: ba83d12dc09e4a
+    password: e3463386
 
     driver-class-name: com.mysql.jdbc.Driver
     hikari:

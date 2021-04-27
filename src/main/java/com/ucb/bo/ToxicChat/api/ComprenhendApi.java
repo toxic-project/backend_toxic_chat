@@ -38,7 +38,7 @@ public class ComprenhendApi {
 
     @RequestMapping(value = "/entities", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Entity> detectEntitiesWithComprehend(@RequestBody TextRequest text, HttpServletRequest request) {
-        log.debug("Method to Detect Entities With Amazon Comprehend {}");
+        log.debug("Method to Detect Entities With Amazon Comprehend");
         Transaction transaction = TransactionUtil.createTransaction(request);
         transactionBl.createTransaction(transaction);
         return comprenhendBl.detecentities(text);
@@ -47,18 +47,11 @@ public class ComprenhendApi {
 
     @RequestMapping(value = "/sentiment", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public SentimentScore detectSentimentsWithComprehend(@RequestBody TextRequest text, HttpServletRequest request) {
-        log.debug("Method to Detect Entities With Amazon Comprehend {}");
-//        Transaction transaction = TransactionUtil.createTransaction(request);
-//        transactionBl.createTransaction(transaction);
+        log.debug("Method to Detect Entities With Amazon Comprehend");
+        Transaction transaction = TransactionUtil.createTransaction(request);
+        transactionBl.createTransaction(transaction);
         return comprenhendBl.detectsentiment(text);
 
-    }
-
-    // ONLY TESTING
-    @RequestMapping(value = "/keys", method = RequestMethod.GET, produces = MediaType.TEXT_PLAIN_VALUE)
-    public String getKeys() {
-        return System.getenv("CLEARDB_DATABASE_URL");
-//        + " " + System.getenv("S3_SECRET");
     }
 
 }

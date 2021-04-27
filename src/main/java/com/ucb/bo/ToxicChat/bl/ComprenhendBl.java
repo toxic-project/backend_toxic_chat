@@ -32,16 +32,16 @@ public class ComprenhendBl {
     }
 
 
-    public List<Entity> detecentities(TextRequest textRequest){
-        DetectEntitiesRequest detectEntitiesRequest = new DetectEntitiesRequest().withText(trimByBytes(textRequest.getText(),5000))
+    public List<Entity> detecentities(TextRequest textRequest) {
+        DetectEntitiesRequest detectEntitiesRequest = new DetectEntitiesRequest().withText(trimByBytes(textRequest.getText(), 5000))
                 .withLanguageCode("es");
         DetectEntitiesResult detectEntitiesResult = comprehendClient().detectEntities(detectEntitiesRequest);
         List<Entity> entitiesList = detectEntitiesResult.getEntities();
         return entitiesList;
     }
 
-    public SentimentScore detectsentiment(TextRequest textRequest){
-        DetectSentimentRequest detectSentimentRequest = new DetectSentimentRequest().withText(trimByBytes(textRequest.getText(),5000))
+    public SentimentScore detectsentiment(TextRequest textRequest) {
+        DetectSentimentRequest detectSentimentRequest = new DetectSentimentRequest().withText(trimByBytes(textRequest.getText(), 5000))
                 .withLanguageCode("es");
         DetectSentimentResult detectSentimentResult = comprehendClient().detectSentiment(detectSentimentRequest);
         SentimentScore sentimentList = detectSentimentResult.getSentimentScore();
@@ -52,13 +52,12 @@ public class ComprenhendBl {
      ** Initialize Amazon Comprehend Client
      **************************************/
     AmazonComprehend comprehendClient() {
-        KeyAmazon keys = new KeyAmazon();
-        log.info(keys.getKey());
-        BasicAWSCredentials awsCreds = new BasicAWSCredentials(keys.getKey(), keys.getSecret());
+        BasicAWSCredentials awsCreds = new BasicAWSCredentials(System.getenv("S3_KEY"), System.getenv("S3_SECRET"));
         AWSStaticCredentialsProvider awsStaticCredentialsProvider = new AWSStaticCredentialsProvider(awsCreds);
         return AmazonComprehendClientBuilder.standard().withCredentials(awsStaticCredentialsProvider)
                 .withRegion("us-east-2").build();
     }
+
     String trimByBytes(String str, int lengthOfBytes) {
         byte[] bytes = str.getBytes(StandardCharsets.UTF_8);
         ByteBuffer buffer = ByteBuffer.wrap(bytes);

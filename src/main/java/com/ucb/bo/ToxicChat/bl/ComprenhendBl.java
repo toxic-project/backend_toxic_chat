@@ -8,7 +8,6 @@ import com.amazonaws.services.comprehend.model.*;
 import com.ucb.bo.ToxicChat.api.ComprenhendApi;
 import com.ucb.bo.ToxicChat.dao.ComprenhendDao;
 import com.ucb.bo.ToxicChat.dto.TextRequest;
-import com.ucb.bo.ToxicChat.util.KeyAmazon;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,17 +34,16 @@ public class ComprenhendBl {
     public List<Entity> detecentities(TextRequest textRequest) {
         DetectEntitiesRequest detectEntitiesRequest = new DetectEntitiesRequest().withText(trimByBytes(textRequest.getText(), 5000))
                 .withLanguageCode("es");
+        log.info(detectEntitiesRequest.toString());
         DetectEntitiesResult detectEntitiesResult = comprehendClient().detectEntities(detectEntitiesRequest);
-        List<Entity> entitiesList = detectEntitiesResult.getEntities();
-        return entitiesList;
+        return detectEntitiesResult.getEntities();
     }
 
     public SentimentScore detectsentiment(TextRequest textRequest) {
         DetectSentimentRequest detectSentimentRequest = new DetectSentimentRequest().withText(trimByBytes(textRequest.getText(), 5000))
                 .withLanguageCode("es");
         DetectSentimentResult detectSentimentResult = comprehendClient().detectSentiment(detectSentimentRequest);
-        SentimentScore sentimentList = detectSentimentResult.getSentimentScore();
-        return sentimentList;
+        return detectSentimentResult.getSentimentScore();
     }
 
     /************* Step 2 *******************

@@ -1,9 +1,36 @@
+###
+POST http://localhost:8080/entities
+Accept: application/json
+Content-Type: application/json
+
+{
+  "text": "Bendiciones a toda tu familia"
+}
+
+###
 POST http://localhost:8080/sentiment
 Accept: application/json
 Content-Type: application/json
 
 {
-  "text":"Bendiciones a toda tu familia"
+  "text": "Bendiciones a toda tu familia"
 }
 
+###
+POST https://bakend-toxic-chat.herokuapp.com/entities
+Accept: application/json
+Content-Type: application/json
+
+{
+  "text": "Bendiciones a toda tu familia"
+}
+
+###
+POST https://bakend-toxic-chat.herokuapp.com/sentiment
+Accept: application/json
+Content-Type: application/json
+
+{
+  "text": "Bendiciones a toda tu familia"
+}
 

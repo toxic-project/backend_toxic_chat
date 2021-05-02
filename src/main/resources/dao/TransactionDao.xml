@@ -4,11 +4,9 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ucb.bo.ToxicChat.dao.TransactionDao">
     <insert id="create" parameterType="com.ucb.bo.ToxicChat.model.Transaction">
-        INSERT INTO transaction
-        VALUES (null,
-                #{txHost},
-                #{txUserId},
-                #{txDate})
+        INSERT INTO transactions
+            ('tx_host', 'tx_user_id', 'tx_date')
+        VALUES (#{txHost}, #{txUserId}, #{txDate})
     </insert>
     <select id="getLastInsertId" resultType="java.lang.Integer">
         SELECT LAST_INSERT_ID()

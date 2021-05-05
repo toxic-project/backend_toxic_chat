@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ucb.bo.ToxicChat.dao.FAQDao">
+
+    <select id="getAllFAQs" resultType="com.ucb.bo.ToxicChat.dto.FAQResponse">
+        SELECT f.id_faq AS idFaq, f.question AS question, f.answers AS answer
+        FROM frequent_answer_questions f
+    </select>
+
+    <insert id="addNewFAQ" parameterType="com.ucb.bo.ToxicChat.model.FrequentAnswerQuestion">
+        INSERT INTO frequent_answer_questions (question, answers, tx_id, tx_host, tx_user_id, tx_date)
+            VALUE (#{question},#{answer},#{txId},#{txHost}, #{txUserId}, #{txDate})
+    </insert>
+</mapper>

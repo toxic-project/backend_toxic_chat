@@ -1,0 +1,13 @@
+### New FAQ
+POST http://localhost:8080/faq/new
+Accept: application/json
+Content-Type: application/json
+
+{
+  "question": "Hola que pex?",
+  "answer": "Bien noma"
+}
+
+### Get all faqs
+GET http://localhost:8080/faq/list
+Content-Type: application/json

@@ -2,16 +2,16 @@ package com.ucb.bo.ToxicChat.model;
 
 import java.util.Date;
 
-public class Transaction {
+public class Transactions {
     private Integer txId;
     private String txHost;
     private Integer txUserId;
     private Date txDate;
 
-    public Transaction() {
+    public Transactions() {
     }
 
-    public Transaction(Integer txId, String txHost, Integer txUserId, Date txDate) {
+    public Transactions(Integer txId, String txHost, Integer txUserId, Date txDate) {
         this.txId = txId;
         this.txHost = txHost;
         this.txUserId = txUserId;
@@ -28,11 +28,11 @@ public class Transaction {
                 '}';
     }
 
-    public void setTransaction(Transaction transaction){
-        setTxId(transaction.getTxId());
-        setTxHost(transaction.getTxHost());
-        setTxUserId(transaction.getTxUserId() != null? transaction.getTxUserId(): 0);
-        setTxDate(transaction.getTxDate());
+    public void setTransaction(Transactions transactions){
+        setTxId(transactions.getTxId());
+        setTxHost(transactions.getTxHost());
+        setTxUserId(transactions.getTxUserId() != null? transactions.getTxUserId(): 0);
+        setTxDate(transactions.getTxDate());
     }
 
 

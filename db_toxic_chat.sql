@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS transaction
+CREATE TABLE IF NOT EXISTS transactions
 (
     tx_id      INT          NOT NULL AUTO_INCREMENT,
     tx_host    VARCHAR(100) NOT NULL,

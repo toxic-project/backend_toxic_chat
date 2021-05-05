@@ -2,7 +2,7 @@ package com.ucb.bo.ToxicChat.bl;
 
 
 import com.ucb.bo.ToxicChat.dao.TransactionDao;
-import com.ucb.bo.ToxicChat.model.Transaction;
+import com.ucb.bo.ToxicChat.model.Transactions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +15,9 @@ public class TransactionBl {
         this.transactionDao = transactionDao;
     }
 
-    public void createTransaction(Transaction transaction) {
-        this.transactionDao.create(transaction);
+    public void createTransaction(Transactions transactions) {
+        this.transactionDao.create(transactions);
         Integer lastPrimaryKey = this.transactionDao.getLastInsertId();
-        transaction.setTxId(lastPrimaryKey);
+        transactions.setTxId(lastPrimaryKey);
     }
 }

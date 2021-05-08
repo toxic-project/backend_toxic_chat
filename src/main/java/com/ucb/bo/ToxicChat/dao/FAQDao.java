@@ -1,7 +1,7 @@
 package com.ucb.bo.ToxicChat.dao;
 
 import com.ucb.bo.ToxicChat.dto.FAQResponse;
-import com.ucb.bo.ToxicChat.model.FrequentAnswerQuestion;
+import com.ucb.bo.ToxicChat.model.FrequentAskedQuestion;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -12,5 +12,5 @@ public interface FAQDao {
     public List<FAQResponse> getAllFAQs();
 
     // Add new faq
-    public void addNewFAQ(FrequentAnswerQuestion newFAQ);
+    public void addNewFAQ(FrequentAskedQuestion newFAQ);
 }

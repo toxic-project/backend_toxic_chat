@@ -3,8 +3,7 @@ package com.ucb.bo.ToxicChat.api;
 import com.ucb.bo.ToxicChat.bl.FAQBl;
 import com.ucb.bo.ToxicChat.bl.TransactionBl;
 import com.ucb.bo.ToxicChat.dto.FAQResponse;
-import com.ucb.bo.ToxicChat.dto.TextRequest;
-import com.ucb.bo.ToxicChat.model.FrequentAnswerQuestion;
+import com.ucb.bo.ToxicChat.model.FrequentAskedQuestion;
 import com.ucb.bo.ToxicChat.model.Transactions;
 import com.ucb.bo.ToxicChat.util.TransactionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +34,7 @@ public class FAQApi {
     }
 
     @RequestMapping(value = "/new", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public FrequentAnswerQuestion newFAQ(@RequestBody FAQResponse newFAQ, HttpServletRequest request) {
+    public FrequentAskedQuestion newFAQ(@RequestBody FAQResponse newFAQ, HttpServletRequest request) {
         Transactions transaction = TransactionUtil.createTransaction(request);
         transactionBl.createTransaction(transaction);
         return faqBl.addNewFAQ(newFAQ, transaction);

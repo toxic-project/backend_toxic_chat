@@ -9,7 +9,7 @@
         FROM frequent_answer_questions f
     </select>
 
-    <insert id="addNewFAQ" parameterType="com.ucb.bo.ToxicChat.model.FrequentAnswerQuestion">
+    <insert id="addNewFAQ" parameterType="com.ucb.bo.ToxicChat.model.FrequentAskedQuestion">
         INSERT INTO frequent_answer_questions (question, answers, tx_id, tx_host, tx_user_id, tx_date)
             VALUE (#{question},#{answer},#{txId},#{txHost}, #{txUserId}, #{txDate})
     </insert>

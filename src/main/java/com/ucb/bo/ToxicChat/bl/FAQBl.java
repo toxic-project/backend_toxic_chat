@@ -2,7 +2,7 @@ package com.ucb.bo.ToxicChat.bl;
 
 import com.ucb.bo.ToxicChat.dao.FAQDao;
 import com.ucb.bo.ToxicChat.dto.FAQResponse;
-import com.ucb.bo.ToxicChat.model.FrequentAnswerQuestion;
+import com.ucb.bo.ToxicChat.model.FrequentAskedQuestion;
 import com.ucb.bo.ToxicChat.model.Transactions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,15 +22,15 @@ public class FAQBl {
         return faqDao.getAllFAQs();
     }
 
-    public FrequentAnswerQuestion addNewFAQ(FAQResponse newFAQ, Transactions transaction) {
-        FrequentAnswerQuestion frequentAnswerQuestion = new FrequentAnswerQuestion();
-        frequentAnswerQuestion.setQuestion(newFAQ.getQuestion());
-        frequentAnswerQuestion.setAnswer(newFAQ.getAnswer());
-        frequentAnswerQuestion.setTxId(transaction.getTxId());
-        frequentAnswerQuestion.setTxHost(transaction.getTxHost());
-        frequentAnswerQuestion.setTxUserId(1);
-        frequentAnswerQuestion.setTxDate(transaction.getTxDate());
-        faqDao.addNewFAQ(frequentAnswerQuestion);
-        return frequentAnswerQuestion;
+    public FrequentAskedQuestion addNewFAQ(FAQResponse newFAQ, Transactions transaction) {
+        FrequentAskedQuestion frequentAskedQuestion = new FrequentAskedQuestion();
+        frequentAskedQuestion.setQuestion(newFAQ.getQuestion());
+        frequentAskedQuestion.setAnswer(newFAQ.getAnswer());
+        frequentAskedQuestion.setTxId(transaction.getTxId());
+        frequentAskedQuestion.setTxHost(transaction.getTxHost());
+        frequentAskedQuestion.setTxUserId(1);
+        frequentAskedQuestion.setTxDate(transaction.getTxDate());
+        faqDao.addNewFAQ(frequentAskedQuestion);
+        return frequentAskedQuestion;
     }
 }

@@ -45,6 +45,12 @@ public class ComprenhendBl {
         DetectSentimentResult detectSentimentResult = comprehendClient().detectSentiment(detectSentimentRequest);
         return detectSentimentResult.getSentimentScore();
     }
+    public List<KeyPhrase> detectContext(TextRequest textRequest){
+        DetectKeyPhrasesRequest detectKeyPhrasesRequest = new DetectKeyPhrasesRequest().withText(trimByBytes(textRequest.getText(), 5000))
+                .withLanguageCode("es");
+        DetectKeyPhrasesResult detectKeyPhrasesResult= comprehendClient().detectKeyPhrases(detectKeyPhrasesRequest);
+        return detectKeyPhrasesResult.getKeyPhrases();
+    }
 
     /************* Step 2 *******************
      ** Initialize Amazon Comprehend Client

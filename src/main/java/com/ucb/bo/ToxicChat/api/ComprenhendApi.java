@@ -1,6 +1,7 @@
 package com.ucb.bo.ToxicChat.api;
 
 import com.amazonaws.services.comprehend.model.Entity;
+import com.amazonaws.services.comprehend.model.KeyPhrase;
 import com.amazonaws.services.comprehend.model.SentimentScore;
 import com.ucb.bo.ToxicChat.bl.ComprenhendBl;
 import com.ucb.bo.ToxicChat.bl.TransactionBl;
@@ -49,6 +50,14 @@ public class ComprenhendApi {
         transactionBl.createTransaction(transaction);
         return comprenhendBl.detectsentiment(text);
 
+    }
+
+    @RequestMapping(value = "/keyphrases", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<KeyPhrase> detectKeyPhrases(@RequestBody TextRequest text, HttpServletRequest request) {
+        log.debug("Method to Detect Entities With Amazon Comprehend");
+        Transactions transaction = TransactionUtil.createTransaction(request);
+        transactionBl.createTransaction(transaction);
+        return comprenhendBl.detectContext(text);
     }
 
 }

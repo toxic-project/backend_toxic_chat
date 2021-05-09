@@ -25,12 +25,12 @@ public class FAQBl {
     public FrequentAskedQuestion addNewFAQ(FAQResponse newFAQ, Transactions transaction) {
         FrequentAskedQuestion frequentAskedQuestion = new FrequentAskedQuestion();
         frequentAskedQuestion.setQuestion(newFAQ.getQuestion());
-        frequentAskedQuestion.setAnswer(newFAQ.getAnswer());
         frequentAskedQuestion.setTxId(transaction.getTxId());
         frequentAskedQuestion.setTxHost(transaction.getTxHost());
         frequentAskedQuestion.setTxUserId(1);
         frequentAskedQuestion.setTxDate(transaction.getTxDate());
         faqDao.addNewFAQ(frequentAskedQuestion);
+        // TODO Add new answer
         return frequentAskedQuestion;
     }
 }

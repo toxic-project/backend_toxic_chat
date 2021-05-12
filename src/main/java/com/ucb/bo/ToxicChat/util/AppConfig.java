@@ -1,43 +1,52 @@
 package com.ucb.bo.ToxicChat.util;
 
-import com.auth0.spring.security.api.Auth0SecurityConfig;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
+import com.auth0.spring.security.api.JwtWebSecurityConfigurer;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
+import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity(debug = true)
-@EnableGlobalMethodSecurity(prePostEnabled = true)
-@Order(SecurityProperties.BASIC_AUTH_ORDER)
-public class AppConfig extends Auth0SecurityConfig {
+public class AppConfig extends WebSecurityConfigurerAdapter {
 
-
-    /**
-     * Not required for the Spring Security implementation, but offers Auth0 API access
-     */
-    public Auth0Client auth0Client() {
-        return new Auth0Client(clientId, issuer);
+    @Value(value = "${auth0.apiAudience}")
+    private String apiAudience;
+    @Value(value = "${auth0.issuer}")
+    private String issuer;
+    @Bean
+    CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
+        configuration.setAllowedMethods(Arrays.asList("GET","POST"));
+        configuration.setAllowCredentials(true);
+        configuration.addAllowedHeader("Authorization");
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
     }
 
-    /**
-     * Override this function in subclass to apply custom authentication / authorization
-     * strategies to your application endpoints
-     */
     @Override
-    protected void authorizeRequests(final HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/ping").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/v1/").hasAnyAuthority("read:profiles")
-                .antMatchers(HttpMethod.GET, "/api/v1/**").hasAnyAuthority("read:profile", "read:profiles")
-                .antMatchers(HttpMethod.POST, "/api/v1/**").hasAnyAuthority("write:profile")
-                .antMatchers(HttpMethod.PUT, "/api/v1/**").hasAnyAuthority("write:profile")
-                .antMatchers(HttpMethod.DELETE, "/api/v1/**").hasAnyAuthority("delete:profile")
-                .antMatchers(securedRoute).authenticated();
+    protected void configure(HttpSecurity http) throws Exception {
+        http.cors();
+        JwtWebSecurityConfigurer
+                .forRS256(apiAudience, issuer)
+                .configure(http)
+                .authorizeRequests()
+
+                // Note: If passing an Authorization header, Spring Security will validate it even with permitAll()
+                // You can ignore security filters if this is an issue for you, as discussed here:
+                // https://stackoverflow.com/questions/36296869/spring-security-permitall-still-considering-token-passed-in-authorization-header
+                .antMatchers(HttpMethod.GET, "/api/public").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/private").authenticated()
+                .antMatchers(HttpMethod.GET, "/api/private-scoped").hasAuthority("read:messages");
     }
 }

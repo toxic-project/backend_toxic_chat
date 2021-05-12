@@ -25,7 +25,20 @@ spring:
               - email
         provider:
           auth0:
-            issuer-uri: https://fulano-es.us.auth0.com/
+#            issuer-uri: https://fulano-es.us.auth0.com
+#            domain: https://fulano-es.us.auth0.com
+#            audience: https://fulano-es.us.auth0.com/api/v2/
+auth0:
+  domain: https://fulano-es.us.auth0.com
+  audience: https://fulano-es.us.auth0.com/api/v2/
+  issuer: https://fulano-es.us.auth0.com
+  clientId: "609b1bd064b846004533c515"
+  clientSecret: "dSzy-KLbtIQNppDPL9BcQB3jXDC9H9ersErwM6cGScEhw2EPSC2BY_xrk9RrgsPu"
+  authorityStrategy: SCOPE
+  defaultAuth0ApiSecurityEnabled: false
+  securedRoute: /api/v2
+  base64EncodedSecret: false
+  apiAudience: https://fulano-es.us.auth0.com/api/v2/
 logging:
   level:
     com:

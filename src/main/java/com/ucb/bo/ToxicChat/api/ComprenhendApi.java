@@ -37,7 +37,7 @@ public class ComprenhendApi {
     @RequestMapping(value = "/entities", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Entity> detectEntitiesWithComprehend(@RequestBody TextRequest text, HttpServletRequest request) {
         log.debug("Method to Detect Entities With Amazon Comprehend");
-        Transactions transaction = TransactionUtil.createTransaction(request);
+//        Transactions transaction = TransactionUtil.createTransaction(request);
 //        transactionBl.createTransaction(transaction);
         return comprenhendBl.detecentities(text);
 
@@ -46,7 +46,7 @@ public class ComprenhendApi {
     @RequestMapping(value = "/sentiment", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public SentimentScore detectSentimentsWithComprehend(@RequestBody TextRequest text, HttpServletRequest request) {
         log.debug("Method to Detect Entities With Amazon Comprehend");
-        Transactions transaction = TransactionUtil.createTransaction(request);
+//        Transactions transaction = TransactionUtil.createTransaction(request);
 //        transactionBl.createTransaction(transaction);
         return comprenhendBl.detectsentiment(text);
 
@@ -55,7 +55,7 @@ public class ComprenhendApi {
     @RequestMapping(value = "/keyphrases", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<KeyPhrase> detectKeyPhrases(@RequestBody TextRequest text, HttpServletRequest request) {
         log.debug("Method to Detect Entities With Amazon Comprehend");
-        Transactions transaction = TransactionUtil.createTransaction(request);
+//        Transactions transaction = TransactionUtil.createTransaction(request);
 //        transactionBl.createTransaction(transaction);
         return comprenhendBl.detectContext(text);
     }

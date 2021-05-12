@@ -5,6 +5,7 @@ import com.ucb.bo.ToxicChat.dto.FAQResponse;
 import com.ucb.bo.ToxicChat.model.FrequentAskedQuestion;
 import com.ucb.bo.ToxicChat.model.Transactions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,6 +23,7 @@ public class FAQBl {
         return faqDao.getAllFAQs();
     }
 
+    @PreAuthorize("hasAuthority('read:faqs')")
     public FrequentAskedQuestion addNewFAQ(FAQResponse newFAQ, Transactions transaction) {
         FrequentAskedQuestion frequentAskedQuestion = new FrequentAskedQuestion();
         frequentAskedQuestion.setQuestion(newFAQ.getQuestion());

@@ -1,11 +1,13 @@
 package com.ucb.bo.ToxicChat.dto;
 
+import java.util.List;
+
 public class FAQResponse {
     private Integer idFaq;
     private String question;
-    private String answer;
+    private List<String> answer;
 
-    public FAQResponse(Integer idFaq, String question, String answer) {
+    public FAQResponse(Integer idFaq, String question, List<String> answer) {
         this.idFaq = idFaq;
         this.question = question;
         this.answer = answer;
@@ -39,11 +41,11 @@ public class FAQResponse {
         this.question = question;
     }
 
-    public String getAnswer() {
+    public List<String> getAnswer() {
         return answer;
     }
 
-    public void setAnswer(String answer) {
+    public void setAnswer(List<String> answer) {
         this.answer = answer;
     }
 }

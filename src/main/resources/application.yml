@@ -12,7 +12,20 @@ spring:
       connectionTestQuery: select 1
       maximum-pool-size: 2
       connection-timeout: 60000
-
+  security:
+    oauth2:
+      client:
+        registration:
+          auth0:
+            client-id: "609b1bd064b846004533c515"
+            client-secret: "dSzy-KLbtIQNppDPL9BcQB3jXDC9H9ersErwM6cGScEhw2EPSC2BY_xrk9RrgsPu"
+            scope:
+              - openid
+              - profile
+              - email
+        provider:
+          auth0:
+            issuer-uri: https://fulano-es.us.auth0.com/
 logging:
   level:
     com:

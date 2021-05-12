@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `user`
     `name`       VARCHAR(50)  NOT NULL,
     `last_name`  VARCHAR(50)  NOT NULL,
     `email`      VARCHAR(60)  NOT NULL,
-    `genero`     BINARY       NOT NULL,
+    `gener`      VARCHAR(60)  NOT NULL,
     `photo`      VARCHAR(300) NOT NULL,
     `status`     INT          NOT NULL,
     `tx_host`    VARCHAR(100) NOT NULL,

@@ -38,7 +38,7 @@ public class ComprenhendApi {
     public List<Entity> detectEntitiesWithComprehend(@RequestBody TextRequest text, HttpServletRequest request) {
         log.debug("Method to Detect Entities With Amazon Comprehend");
         Transactions transaction = TransactionUtil.createTransaction(request);
-        transactionBl.createTransaction(transaction);
+//        transactionBl.createTransaction(transaction);
         return comprenhendBl.detecentities(text);
 
     }
@@ -47,7 +47,7 @@ public class ComprenhendApi {
     public SentimentScore detectSentimentsWithComprehend(@RequestBody TextRequest text, HttpServletRequest request) {
         log.debug("Method to Detect Entities With Amazon Comprehend");
         Transactions transaction = TransactionUtil.createTransaction(request);
-        transactionBl.createTransaction(transaction);
+//        transactionBl.createTransaction(transaction);
         return comprenhendBl.detectsentiment(text);
 
     }
@@ -56,7 +56,7 @@ public class ComprenhendApi {
     public List<KeyPhrase> detectKeyPhrases(@RequestBody TextRequest text, HttpServletRequest request) {
         log.debug("Method to Detect Entities With Amazon Comprehend");
         Transactions transaction = TransactionUtil.createTransaction(request);
-        transactionBl.createTransaction(transaction);
+//        transactionBl.createTransaction(transaction);
         return comprenhendBl.detectContext(text);
     }
 

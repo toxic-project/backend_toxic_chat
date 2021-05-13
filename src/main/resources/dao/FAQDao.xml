@@ -5,8 +5,16 @@
 <mapper namespace="com.ucb.bo.ToxicChat.dao.FAQDao">
 
     <select id="getAllFAQs" resultType="com.ucb.bo.ToxicChat.dto.FAQResponse">
-        SELECT f.id_faq AS idFaq, f.question AS question, f.answers AS answer
-        FROM frequent_answer_questions f
+        SELECT f.id_faq AS idFaq, f.question AS question
+        FROM frequent_asked_question f
+    </select>
+
+    <select id="getAnswersByFAQId" resultType="com.ucb.bo.ToxicChat.model.Answers">
+        SELECT a.id_answer as idAnswer,
+               a.id_faq    as idFaq,
+               a.answer    as answer
+        FROM answers a
+        WHERE a.id_faq = #{idFaq}
     </select>
 
     <insert id="addNewFAQ" parameterType="com.ucb.bo.ToxicChat.model.FrequentAskedQuestion">

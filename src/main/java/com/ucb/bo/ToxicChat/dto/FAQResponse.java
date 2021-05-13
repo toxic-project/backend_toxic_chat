@@ -1,14 +1,18 @@
 package com.ucb.bo.ToxicChat.dto;
 
+import com.ucb.bo.ToxicChat.model.Answers;
+
+import java.util.List;
+
 public class FAQResponse {
     private Integer idFaq;
     private String question;
-    private String answer;
+    private List<Answers> answers;
 
-    public FAQResponse(Integer idFaq, String question, String answer) {
+    public FAQResponse(Integer idFaq, String question, List<Answers> answer) {
         this.idFaq = idFaq;
         this.question = question;
-        this.answer = answer;
+        this.answers = answer;
     }
 
     public FAQResponse() {
@@ -19,7 +23,7 @@ public class FAQResponse {
         return "FAQResponse{" +
                 "idFaq=" + idFaq +
                 ", question='" + question + '\'' +
-                ", answer='" + answer + '\'' +
+                ", answer='" + answers + '\'' +
                 '}';
     }
 
@@ -39,11 +43,11 @@ public class FAQResponse {
         this.question = question;
     }
 
-    public String getAnswer() {
-        return answer;
+    public List<Answers> getAnswer() {
+        return answers;
     }
 
-    public void setAnswer(String answer) {
-        this.answer = answer;
+    public void setAnswer(List<Answers> answer) {
+        this.answers = answer;
     }
 }

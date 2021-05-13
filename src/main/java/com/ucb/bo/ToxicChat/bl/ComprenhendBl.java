@@ -7,7 +7,11 @@ import com.amazonaws.services.comprehend.AmazonComprehendClientBuilder;
 import com.amazonaws.services.comprehend.model.*;
 import com.ucb.bo.ToxicChat.api.ComprenhendApi;
 import com.ucb.bo.ToxicChat.dao.ComprenhendDao;
+import com.ucb.bo.ToxicChat.dto.MessageResponse;
+import com.ucb.bo.ToxicChat.dto.MessagesRequest;
 import com.ucb.bo.ToxicChat.dto.TextRequest;
+import com.ucb.bo.ToxicChat.util.ClassificationMessages;
+import com.ucb.bo.ToxicChat.util.UserColor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,18 +22,38 @@ import java.nio.charset.CharacterCodingException;
 import java.nio.charset.CharsetDecoder;
 import java.nio.charset.CodingErrorAction;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class ComprenhendBl {
     private ComprenhendDao comprenhendDao;
+    private ClassificationMessages classificationMessages;
     private static final Logger log = LoggerFactory.getLogger(ComprenhendApi.class);
 
     @Autowired
-    public ComprenhendBl(ComprenhendDao comprenhendDao) {
+    public ComprenhendBl(ComprenhendDao comprenhendDao, ClassificationMessages classificationMessages) {
         this.comprenhendDao = comprenhendDao;
+        this.classificationMessages = classificationMessages;
     }
-
+    public List<MessageResponse> sentimentPerMessages(List<MessagesRequest> messagesRequests){
+        List<MessageResponse> messagesResponse = new ArrayList<MessageResponse>();
+        List<UserColor> userColors = classificationMessages.setUserColor(messagesRequests.get(0).getUsers());
+        messagesRequests.forEach(value -> {
+            MessageResponse message= new MessageResponse();
+            TextRequest text= new TextRequest();
+            text.setText(value.getMessages());
+            SentimentScore sentimentresult = detectsentiment(text);
+            message.setMessages(value.getMessages());
+            message.setDate(value.getDate());
+            message.setFrom(value.getFrom());
+            message.setEmoticon(classificationMessages.compareSentimentResult(sentimentresult));
+            message.setColorUser(classificationMessages.userColor(userColors,value.getFrom()));
+            message.setColoremoticon(classificationMessages.compareSentimentResultColor(sentimentresult));
+            messagesResponse.add(message);
+        });
+        return  messagesResponse;
+    }
 
     public List<Entity> detecentities(TextRequest textRequest) {
         DetectEntitiesRequest detectEntitiesRequest = new DetectEntitiesRequest().withText(trimByBytes(textRequest.getText(), 5000))
@@ -56,7 +80,7 @@ public class ComprenhendBl {
      ** Initialize Amazon Comprehend Client
      **************************************/
     AmazonComprehend comprehendClient() {
-        BasicAWSCredentials awsCreds = new BasicAWSCredentials(System.getenv("S3_KEY"), System.getenv("S3_SECRET"));
+        BasicAWSCredentials awsCreds = new BasicAWSCredentials("AKIASTMWE3ADLTB7A4KE", "1+sTOnPPVwb4dooGPe8aX/QH4zwVE7Buu6miRRDu");
         AWSStaticCredentialsProvider awsStaticCredentialsProvider = new AWSStaticCredentialsProvider(awsCreds);
         return AmazonComprehendClientBuilder.standard().withCredentials(awsStaticCredentialsProvider)
                 .withRegion("us-east-2").build();

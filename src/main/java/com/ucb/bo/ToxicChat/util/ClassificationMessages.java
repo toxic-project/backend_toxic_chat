@@ -8,6 +8,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 @Controller
 public class ClassificationMessages {
@@ -53,19 +54,19 @@ public class ClassificationMessages {
             Color randomColor = new Color(r, g, b);
             UserColor userColor= new UserColor();
             userColor.setUser(s);
-            userColor.setColor(randomColor.toString());
+            userColor.setColor(randomColor.getRed()+randomColor.getGreen()+ randomColor.getBlue()+"");
             color.add(userColor);
         });
         return color;
     }
     public String userColor(List<UserColor> users, String user){
-        String color="";
-        for (UserColor userColor : users) {
-            if (userColor.getUser() == user) {
-                color = userColor.getColor();
+        return users.stream().map(usercolor -> {
+            if (usercolor.getUser()==user){
+                return usercolor.getColor();
+            }else {
+                return "";
             }
-        }
-        return color;
+        }).collect(Collectors.joining());
     }
 
 }

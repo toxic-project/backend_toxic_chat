@@ -52,7 +52,7 @@ Content-Type: application/json
   {
     "date": "29-19-15",
     "from": "pepito",
-    "message": "Hola como estas",
+    "messages": "Pero Jacobito Axel, como es natural",
     "users": [
       "pepito",
       "jose"]
@@ -60,7 +60,7 @@ Content-Type: application/json
   {
     "date": "29-19-15",
     "from": "jose",
-    "message": "Bien y tu?",
+    "messages": "no dejó de crecer y crecer. Muy pronto, por ejemplo?",
     "users": [
       "pepito",
       "jose"]

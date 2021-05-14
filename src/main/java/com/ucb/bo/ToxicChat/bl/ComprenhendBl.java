@@ -29,7 +29,7 @@ import java.util.List;
 public class ComprenhendBl {
     private ComprenhendDao comprenhendDao;
     private ClassificationMessages classificationMessages;
-    private static final Logger log = LoggerFactory.getLogger(ComprenhendApi.class);
+    private static final Logger log = LoggerFactory.getLogger(ComprenhendBl.class);
 
     @Autowired
     public ComprenhendBl(ComprenhendDao comprenhendDao, ClassificationMessages classificationMessages) {
@@ -37,8 +37,9 @@ public class ComprenhendBl {
         this.classificationMessages = classificationMessages;
     }
     public List<MessageResponse> sentimentPerMessages(List<MessagesRequest> messagesRequests){
-        List<MessageResponse> messagesResponse = new ArrayList<MessageResponse>();
+        List<MessageResponse> messagesResponse = new ArrayList<>();
         List<UserColor> userColors = classificationMessages.setUserColor(messagesRequests.get(0).getUsers());
+
         messagesRequests.forEach(value -> {
             MessageResponse message= new MessageResponse();
             TextRequest text= new TextRequest();
@@ -52,6 +53,7 @@ public class ComprenhendBl {
             message.setColoremoticon(classificationMessages.compareSentimentResultColor(sentimentresult));
             messagesResponse.add(message);
         });
+
         return  messagesResponse;
     }
 

@@ -42,3 +42,27 @@ Content-Type: application/json
 {
   "text": "Pero Jacobito Axel, como es natural, no dejó de crecer y crecer. Muy pronto, por ejemplo, tuvo que ir a la escuela. ¡Ah, la escuela! ¡Qué hermoso vocablo! ¡Qué banquete, qué festín resultó ser el colegio para su alma ávida de palabras y frases, y aun de párrafos y textos enteros! Allí, en la escuela, podía escuchar ahora el niño Jacobo, completamente absorto, embelesado y como ido, las suavecitas palabras que fluían, frágil y rítmicamente, de los labios pintados de rojo de la maestra. Y allí aprendió Jacobito, sobre todo, las normas sagradas de la escritura. Con qué loco frenesí se entregó Jacobín a aquella nueva tarea. ¡Escribir!: pintar las palabras con el lápiz que le regalara la Nati. Dibujar en la piel del cuaderno todas las palabras del mundo. Nombrar todo lo que le viniera en gana. Eso era escribir: mucho mejor que hablar, mucho mejor que leer. Y fue entonces –al aprender a escribir– cuando Jacobito Axel comenzó a robar las palabras ahora ya con todo descaro, a la luz del día, a la vista de todos, sin importarle un comino lo que la gente pudiera decir o pensar: copiaba, escribiéndolo, todo lo que leía. Rebuscó por su casa y apiló, en su cuarto, todos los libros que pudo encontrar; y se entregó, de inmediato, a la frenética labor de copiar y copiar."
 }
+
+###
+POST http://localhost:8080/sentiment/messages
+Accept: application/json
+Content-Type: application/json
+
+[
+  {
+    "date": "29-19-15",
+    "from": "pepito",
+    "messages": "Pero Jacobito Axel, como es natural",
+    "users": [
+      "pepito",
+      "jose"]
+  },
+  {
+    "date": "29-19-15",
+    "from": "jose",
+    "messages": "no dejó de crecer y crecer. Muy pronto, por ejemplo?",
+    "users": [
+      "pepito",
+      "jose"]
+  }
+]

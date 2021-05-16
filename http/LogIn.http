@@ -1,0 +1,6 @@
+### Login
+GET http://localhost:8080/login
+Accept: application/json
+
+###
+http://localhost:8080/oauth2/authorization/auth0

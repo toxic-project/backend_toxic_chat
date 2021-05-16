@@ -11,3 +11,7 @@ Content-Type: application/json
 ### Get all faqs
 GET http://localhost:8080/faq/list
 Content-Type: application/json
+
+###(heroku)
+GET https://bakend-toxic-chat.herokuapp.com/faq/list
+Content-Type: application/json

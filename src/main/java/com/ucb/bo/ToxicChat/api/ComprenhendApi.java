@@ -5,9 +5,9 @@ import com.amazonaws.services.comprehend.model.KeyPhrase;
 import com.amazonaws.services.comprehend.model.SentimentScore;
 import com.ucb.bo.ToxicChat.bl.ComprenhendBl;
 import com.ucb.bo.ToxicChat.bl.TransactionBl;
+import com.ucb.bo.ToxicChat.dto.MessageResponse;
+import com.ucb.bo.ToxicChat.dto.MessagesRequest;
 import com.ucb.bo.ToxicChat.dto.TextRequest;
-import com.ucb.bo.ToxicChat.model.Transactions;
-import com.ucb.bo.ToxicChat.util.TransactionUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +37,7 @@ public class ComprenhendApi {
     @RequestMapping(value = "/entities", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Entity> detectEntitiesWithComprehend(@RequestBody TextRequest text, HttpServletRequest request) {
         log.debug("Method to Detect Entities With Amazon Comprehend");
-        Transactions transaction = TransactionUtil.createTransaction(request);
+//        Transactions transaction = TransactionUtil.createTransaction(request);
 //        transactionBl.createTransaction(transaction);
         return comprenhendBl.detecentities(text);
 
@@ -46,7 +46,7 @@ public class ComprenhendApi {
     @RequestMapping(value = "/sentiment", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public SentimentScore detectSentimentsWithComprehend(@RequestBody TextRequest text, HttpServletRequest request) {
         log.debug("Method to Detect Entities With Amazon Comprehend");
-        Transactions transaction = TransactionUtil.createTransaction(request);
+//        Transactions transaction = TransactionUtil.createTransaction(request);
 //        transactionBl.createTransaction(transaction);
         return comprenhendBl.detectsentiment(text);
 
@@ -55,9 +55,16 @@ public class ComprenhendApi {
     @RequestMapping(value = "/keyphrases", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<KeyPhrase> detectKeyPhrases(@RequestBody TextRequest text, HttpServletRequest request) {
         log.debug("Method to Detect Entities With Amazon Comprehend");
-        Transactions transaction = TransactionUtil.createTransaction(request);
+//        Transactions transaction = TransactionUtil.createTransaction(request);
 //        transactionBl.createTransaction(transaction);
         return comprenhendBl.detectContext(text);
     }
 
+    @RequestMapping(value = "/sentiment/messages", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<MessageResponse> detectSentimentsPerMessage(@RequestBody List<MessagesRequest> messagesRequests, HttpServletRequest request) {
+//        Transactions transaction = TransactionUtil.createTransaction(request);
+//        transactionBl.createTransaction(transaction);
+        return comprenhendBl.sentimentPerMessages(messagesRequests);
+
+    }
 }

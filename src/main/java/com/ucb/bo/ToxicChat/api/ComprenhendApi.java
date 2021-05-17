@@ -61,7 +61,7 @@ public class ComprenhendApi {
     }
 
     @RequestMapping(value = "/sentiment/messages", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<MessageResponse> detectSentimentsPerMessage(@RequestBody List<MessagesRequest> messagesRequests, HttpServletRequest request) {
+    public List<MessageResponse> detectSentimentsPerMessage(@RequestBody MessagesRequest messagesRequests, HttpServletRequest request) {
 //        Transactions transaction = TransactionUtil.createTransaction(request);
 //        transactionBl.createTransaction(transaction);
         return comprenhendBl.sentimentPerMessages(messagesRequests);

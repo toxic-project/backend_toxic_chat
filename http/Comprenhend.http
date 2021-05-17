@@ -53,18 +53,12 @@ Content-Type: application/json
     {
       "date": "29-19-15",
       "from": "pepito",
-      "messages": "Pero Jacobito Axel, como es natural",
-      "users": [
-        "pepito",
-        "jose"]
+      "message": "Pero Jacobito Axel, como es natural"
     },
     {
       "date": "29-19-15",
       "from": "jose",
-      "messages": "no dejó de crecer y crecer. Muy pronto, por ejemplo?",
-      "users": [
-        "pepito",
-        "jose"]
+      "message": "no dejó de crecer y crecer. Muy pronto, por ejemplo?"
     }
   ]
 }

@@ -3,7 +3,7 @@ package com.ucb.bo.ToxicChat.dto;
 public class Messages {
     private String date;
     private String from;
-    private String messages;
+    private String message;
 
     public Messages() {
     }
@@ -24,11 +24,11 @@ public class Messages {
         this.from = from;
     }
 
-    public String getMessages() {
-        return messages;
+    public String getMessage() {
+        return message;
     }
 
-    public void setMessages(String messages) {
-        this.messages = messages;
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

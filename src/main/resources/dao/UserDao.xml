@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ucb.bo.ToxicChat.dao.UserDao">
+    <select id="getUser" resultType="com.ucb.bo.ToxicChat.dto.UserResponse">
+        SELECT
+               username as username,
+               name as name,
+               last_name as lastName,
+               email as email,
+               photo as photo,
+               gender as gender
+        FROM user WHERE status=1 AND id_user=#{userid}
+    </select>
+</mapper>

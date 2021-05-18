@@ -6,6 +6,7 @@ import com.amazonaws.services.comprehend.model.SentimentScore;
 import com.ucb.bo.ToxicChat.bl.ComprenhendBl;
 import com.ucb.bo.ToxicChat.bl.TransactionBl;
 import com.ucb.bo.ToxicChat.dto.MessageResponse;
+import com.ucb.bo.ToxicChat.dto.Messages;
 import com.ucb.bo.ToxicChat.dto.MessagesRequest;
 import com.ucb.bo.ToxicChat.dto.TextRequest;
 import org.slf4j.Logger;
@@ -61,7 +62,7 @@ public class ComprenhendApi {
     }
 
     @RequestMapping(value = "/sentiment/messages", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<MessageResponse> detectSentimentsPerMessage(@RequestBody MessagesRequest messagesRequests, HttpServletRequest request) {
+    public List<MessageResponse> detectSentimentsPerMessage(@RequestBody List<Messages> messagesRequests, HttpServletRequest request) {
 //        Transactions transaction = TransactionUtil.createTransaction(request);
 //        transactionBl.createTransaction(transaction);
         return comprenhendBl.sentimentPerMessages(messagesRequests);

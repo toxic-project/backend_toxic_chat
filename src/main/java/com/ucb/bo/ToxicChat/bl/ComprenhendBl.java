@@ -7,6 +7,7 @@ import com.amazonaws.services.comprehend.AmazonComprehendClientBuilder;
 import com.amazonaws.services.comprehend.model.*;
 import com.ucb.bo.ToxicChat.dao.ComprenhendDao;
 import com.ucb.bo.ToxicChat.dto.MessageResponse;
+import com.ucb.bo.ToxicChat.dto.Messages;
 import com.ucb.bo.ToxicChat.dto.MessagesRequest;
 import com.ucb.bo.ToxicChat.dto.TextRequest;
 import com.ucb.bo.ToxicChat.util.ClassificationMessages;
@@ -34,9 +35,9 @@ public class ComprenhendBl {
         this.comprenhendDao = comprenhendDao;
         this.classificationMessages = classificationMessages;
     }
-    public List<MessageResponse> sentimentPerMessages(MessagesRequest messagesRequest){
+    public List<MessageResponse> sentimentPerMessages(List<Messages> messagesRequest){
         List<MessageResponse> messagesResponse = new ArrayList<>();
-        messagesRequest.getData().forEach(value -> {
+        messagesRequest.forEach(value -> {
             MessageResponse message= new MessageResponse();
             TextRequest text= new TextRequest();
             text.setText(value.getMessage());
@@ -76,7 +77,7 @@ public class ComprenhendBl {
      ** Initialize Amazon Comprehend Client
      **************************************/
     AmazonComprehend comprehendClient() {
-        BasicAWSCredentials awsCreds = new BasicAWSCredentials("AKIASTMWE3ADLTB7A4KE", "1+sTOnPPVwb4dooGPe8aX/QH4zwVE7Buu6miRRDu");
+        BasicAWSCredentials awsCreds = new BasicAWSCredentials("AKIA6B5X4HMKTQI5FP4Y", "XZayYiJQON/WSVU592411liHBrNhOTxsZWyWy2+1");
         AWSStaticCredentialsProvider awsStaticCredentialsProvider = new AWSStaticCredentialsProvider(awsCreds);
         return AmazonComprehendClientBuilder.standard().withCredentials(awsStaticCredentialsProvider)
                 .withRegion("us-east-2").build();

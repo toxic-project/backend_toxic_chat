@@ -8,7 +8,6 @@ import com.amazonaws.services.comprehend.model.*;
 import com.ucb.bo.ToxicChat.dao.ComprenhendDao;
 import com.ucb.bo.ToxicChat.dto.MessageResponse;
 import com.ucb.bo.ToxicChat.dto.Messages;
-import com.ucb.bo.ToxicChat.dto.MessagesRequest;
 import com.ucb.bo.ToxicChat.dto.TextRequest;
 import com.ucb.bo.ToxicChat.util.ClassificationMessages;
 import org.slf4j.Logger;
@@ -42,7 +41,7 @@ public class ComprenhendBl {
             TextRequest text= new TextRequest();
             text.setText(value.getMessage());
             SentimentScore sentimentresult = detectsentiment(text);
-            message.setMessages(value.getMessage());
+            message.setMessage(value.getMessage());
             message.setDate(value.getDate());
             message.setFrom(value.getFrom());
             message.setEmoticon(classificationMessages.compareSentimentResult(sentimentresult));
@@ -77,7 +76,7 @@ public class ComprenhendBl {
      ** Initialize Amazon Comprehend Client
      **************************************/
     AmazonComprehend comprehendClient() {
-        BasicAWSCredentials awsCreds = new BasicAWSCredentials("AKIA6B5X4HMKTQI5FP4Y", "XZayYiJQON/WSVU592411liHBrNhOTxsZWyWy2+1");
+        BasicAWSCredentials awsCreds = new BasicAWSCredentials(System.getenv("S3_KEY"), System.getenv("S3_SECRET"));
         AWSStaticCredentialsProvider awsStaticCredentialsProvider = new AWSStaticCredentialsProvider(awsCreds);
         return AmazonComprehendClientBuilder.standard().withCredentials(awsStaticCredentialsProvider)
                 .withRegion("us-east-2").build();

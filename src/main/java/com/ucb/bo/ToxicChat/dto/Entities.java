@@ -1,49 +1,49 @@
 package com.ucb.bo.ToxicChat.dto;
 
 public class Entities {
-    private Double puntaje;
-    private String tipo;
-    private String texto;
+    private Double score;
+    private String type;
+    private String text;
 
     public Entities() {
     }
 
-    public Entities(Double puntaje, String tipo, String texto) {
-        this.puntaje = puntaje;
-        this.tipo = tipo;
-        this.texto = texto;
+    public Entities(Double score, String type, String text) {
+        this.score = score;
+        this.type = type;
+        this.text = text;
     }
 
     @Override
     public String toString() {
         return "Entities{" +
-                "score=" + puntaje +
-                ", type='" + tipo + '\'' +
-                ", text='" + texto + '\'' +
+                "score=" + score +
+                ", type='" + type + '\'' +
+                ", text='" + text + '\'' +
                 '}';
     }
 
-    public Double getPuntaje() {
-        return puntaje;
+    public Double getScore() {
+        return score;
     }
 
-    public void setPuntaje(Double puntaje) {
-        this.puntaje = puntaje;
+    public void setScore(Double score) {
+        this.score = score;
     }
 
-    public String getTipo() {
-        return tipo;
+    public String getType() {
+        return type;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public String getTexto() {
-        return texto;
+    public String getText() {
+        return text;
     }
 
-    public void setTexto(String texto) {
-        this.texto = texto;
+    public void setText(String text) {
+        this.text = text;
     }
 }

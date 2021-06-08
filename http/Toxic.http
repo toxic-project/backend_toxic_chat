@@ -1,0 +1,7 @@
+###
+POST http://localhost:8080/toxic/chat/text
+Content-Type: application/json
+
+{
+  "text": "gg el proyecto"
+}

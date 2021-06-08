@@ -26,7 +26,7 @@ public class ToxicApi {
 //        log.debug("Method to Detect Entities With Amazon Comprehend");
 //        Transactions transaction = TransactionUtil.createTransaction(request);
 //        transactionBl.createTransaction(transaction);
-        Comprehend comprehend = new Comprehend(0.1, 0.1, 0.1, 0.1);
+        Comprehend comprehend = new Comprehend(0.32, 0.13, 0.54, 0.25);
         Entities entities = new Entities(0.8, "PERSON", "pex");
 
         return new ResultsResponse(entities, comprehend);

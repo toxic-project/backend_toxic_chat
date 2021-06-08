@@ -1,20 +1,19 @@
 package com.ucb.bo.ToxicChat.dto;
 
 public class Comprehend {
-    private Double positive;
-    private Double negative;
-    private Double neutral;
-    private Double mixed;
+    private Float positive;
+    private Float negative;
+    private Float neutral;
+    private Float mixed;
 
+    public Comprehend() {
+    }
 
-    public Comprehend(Double positive, Double negative, Double neutral, Double mixed) {
+    public Comprehend(Float positive, Float negative, Float neutral, Float mixed) {
         this.positive = positive;
         this.negative = negative;
         this.neutral = neutral;
         this.mixed = mixed;
-    }
-
-    public Comprehend() {
     }
 
     @Override
@@ -27,35 +26,35 @@ public class Comprehend {
                 '}';
     }
 
-    public Double getPositive() {
+    public Float getPositive() {
         return positive;
     }
 
-    public void setPositive(Double positive) {
+    public void setPositive(Float positive) {
         this.positive = positive;
     }
 
-    public Double getNegative() {
+    public Float getNegative() {
         return negative;
     }
 
-    public void setNegative(Double negative) {
+    public void setNegative(Float negative) {
         this.negative = negative;
     }
 
-    public Double getNeutral() {
+    public Float getNeutral() {
         return neutral;
     }
 
-    public void setNeutral(Double neutral) {
+    public void setNeutral(Float neutral) {
         this.neutral = neutral;
     }
 
-    public Double getMixed() {
+    public Float getMixed() {
         return mixed;
     }
 
-    public void setMixed(Double mixed) {
+    public void setMixed(Float mixed) {
         this.mixed = mixed;
     }
 }

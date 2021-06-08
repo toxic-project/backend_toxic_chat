@@ -34,11 +34,12 @@ public class ComprenhendBl {
         this.comprenhendDao = comprenhendDao;
         this.classificationMessages = classificationMessages;
     }
-    public List<MessageResponse> sentimentPerMessages(List<Messages> messagesRequest){
+
+    public List<MessageResponse> sentimentPerMessages(List<Messages> messagesRequest) {
         List<MessageResponse> messagesResponse = new ArrayList<>();
         messagesRequest.forEach(value -> {
-            MessageResponse message= new MessageResponse();
-            TextRequest text= new TextRequest();
+            MessageResponse message = new MessageResponse();
+            TextRequest text = new TextRequest();
             text.setText(value.getMessage());
             SentimentScore sentimentresult = detectsentiment(text);
             message.setMessage(value.getMessage());
@@ -48,7 +49,7 @@ public class ComprenhendBl {
             message.setColoremoticon(classificationMessages.compareSentimentResultColor(sentimentresult));
             messagesResponse.add(message);
         });
-        return  messagesResponse;
+        return messagesResponse;
     }
 
     public List<Entity> detecentities(TextRequest textRequest) {
@@ -65,10 +66,11 @@ public class ComprenhendBl {
         DetectSentimentResult detectSentimentResult = comprehendClient().detectSentiment(detectSentimentRequest);
         return detectSentimentResult.getSentimentScore();
     }
-    public List<KeyPhrase> detectContext(TextRequest textRequest){
+
+    public List<KeyPhrase> detectContext(TextRequest textRequest) {
         DetectKeyPhrasesRequest detectKeyPhrasesRequest = new DetectKeyPhrasesRequest().withText(trimByBytes(textRequest.getText(), 5000))
                 .withLanguageCode("es");
-        DetectKeyPhrasesResult detectKeyPhrasesResult= comprehendClient().detectKeyPhrases(detectKeyPhrasesRequest);
+        DetectKeyPhrasesResult detectKeyPhrasesResult = comprehendClient().detectKeyPhrases(detectKeyPhrasesRequest);
         return detectKeyPhrasesResult.getKeyPhrases();
     }
 

@@ -1,14 +1,11 @@
 package com.ucb.bo.ToxicChat.dto;
 
 public class Entities {
-    private Double score;
+    private Float score;
     private String type;
     private String text;
 
-    public Entities() {
-    }
-
-    public Entities(Double score, String type, String text) {
+    public Entities(Float score, String type, String text) {
         this.score = score;
         this.type = type;
         this.text = text;
@@ -23,11 +20,11 @@ public class Entities {
                 '}';
     }
 
-    public Double getScore() {
+    public Float getScore() {
         return score;
     }
 
-    public void setScore(Double score) {
+    public void setScore(Float score) {
         this.score = score;
     }
 

@@ -40,15 +40,17 @@ public class ResultsBl {
         DetectSentimentResult detectSentimentResult = comprehendClient().detectSentiment(detectSentimentRequest);
         SentimentScore sentiment = detectSentimentResult.getSentimentScore();
         Comprehend comprehend = new Comprehend(sentiment.getPositive(), sentiment.getNegative(), sentiment.getNeutral(), sentiment.getMixed());
+        Entities entities = new Entities();
+        try {
+            DetectEntitiesRequest detectEntitiesRequest = new DetectEntitiesRequest().withText(trimByBytes(text.getText(), 5000)).withLanguageCode("es");
+            log.info(detectEntitiesRequest.toString());
+            DetectEntitiesResult detectEntitiesResult = comprehendClient().detectEntities(detectEntitiesRequest);
+            Entity entitiesList = detectEntitiesResult.getEntities().get(0);
+            entities = new Entities(entitiesList.getScore(), entitiesList.getType(), entitiesList.getText());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-
-        DetectEntitiesRequest detectEntitiesRequest = new DetectEntitiesRequest().withText(trimByBytes(text.getText(), 5000)).withLanguageCode("es");
-        log.info(detectEntitiesRequest.toString());
-        DetectEntitiesResult detectEntitiesResult = comprehendClient().detectEntities(detectEntitiesRequest);
-        Entity entitiesList = detectEntitiesResult.getEntities().get(0);
-        Entities entities = new Entities(entitiesList.getScore(), entitiesList.getType(), entitiesList.getText());
-
-//        return detectEntitiesResult.getEntities();
         return new ResultsResponse(entities, comprehend);
     }
 

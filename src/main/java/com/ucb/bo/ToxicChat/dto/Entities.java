@@ -11,6 +11,9 @@ public class Entities {
         this.text = text;
     }
 
+    public Entities() {
+    }
+
     @Override
     public String toString() {
         return "Entities{" +

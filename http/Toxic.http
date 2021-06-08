@@ -5,3 +5,11 @@ Content-Type: application/json
 {
   "text": "gg el proyecto"
 }
+
+###(heroku)
+POST https://bakend-toxic-chat.herokuapp.com/toxic/chat/text
+Content-Type: application/json
+
+{
+  "text": "gg el proyecto"
+}

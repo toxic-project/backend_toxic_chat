@@ -7,7 +7,6 @@ import com.ucb.bo.ToxicChat.bl.ComprenhendBl;
 import com.ucb.bo.ToxicChat.bl.TransactionBl;
 import com.ucb.bo.ToxicChat.dto.MessageResponse;
 import com.ucb.bo.ToxicChat.dto.Messages;
-import com.ucb.bo.ToxicChat.dto.MessagesRequest;
 import com.ucb.bo.ToxicChat.dto.TextRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,14 +22,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "")
-public class ComprenhendApi {
+public class ComprehendApi {
 
     private final TransactionBl transactionBl;
     private final ComprenhendBl comprenhendBl;
-    private static final Logger log = LoggerFactory.getLogger(ComprenhendApi.class);
+    private static final Logger log = LoggerFactory.getLogger(ComprehendApi.class);
 
     @Autowired
-    public ComprenhendApi(TransactionBl transactionBl, ComprenhendBl comprenhendBl) {
+    public ComprehendApi(TransactionBl transactionBl, ComprenhendBl comprenhendBl) {
         this.transactionBl = transactionBl;
         this.comprenhendBl = comprenhendBl;
     }
@@ -41,7 +40,6 @@ public class ComprenhendApi {
 //        Transactions transaction = TransactionUtil.createTransaction(request);
 //        transactionBl.createTransaction(transaction);
         return comprenhendBl.detecentities(text);
-
     }
 
     @RequestMapping(value = "/sentiment", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)

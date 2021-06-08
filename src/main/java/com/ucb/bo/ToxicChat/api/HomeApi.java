@@ -1,4 +1,4 @@
-//package com.ucb.bo.ToxicChat.api;
+package com.ucb.bo.ToxicChat.api;
 //
 //import org.apache.http.HttpClientConnection;
 //import org.apache.http.HttpResponse;
@@ -18,11 +18,11 @@
 //import javax.swing.text.html.HTMLDocument;
 //
 //@RestController
-//public class HomeApi {
+public class HomeApi {
 //    private static final Logger log = LoggerFactory.getLogger(HomeApi.class);
 //
 //    @RequestMapping(value = "/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 //    public String home(Model model, @AuthenticationPrincipal OidcUser principal) {
 //        return "Home";
 //    }
-//}
+}

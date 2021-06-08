@@ -7,26 +7,11 @@ spring:
     url: jdbc:mysql://us-cdbr-east-03.cleardb.com/heroku_5cdec0192cfaf15?reconnect=true
     username: ba83d12dc09e4a
     password: e3463386
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     hikari:
       connectionTestQuery: select 1
       maximum-pool-size: 2
       connection-timeout: 60000
-#  security:
-#    oauth2:
-#      client:
-#        registration:
-#          auth0:
-#            client-id: cM0YFOhYQW5M92CbBR5SlGHBIiwaaf4M
-#            client-secret: K18O_YOq_x37_eOTpsWtIpkdC5uB4rFMyWKpsIoEthfK_9XY5nGESCV39xJ8vMEJ
-#            scope:
-#              - openid
-#              - profile
-#              - email
-#        provider:
-#          auth0:
-#            # trailing slash is important!
-#            issuer-uri: https://fulano-es.us.auth0.com/
 logging:
   level:
     com:

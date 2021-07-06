@@ -55,7 +55,7 @@ public class ResultsBl {
     }
 
     private AmazonComprehend comprehendClient() {
-        BasicAWSCredentials awsCreds = new BasicAWSCredentials(System.getenv("S3_KEY"), System.getenv("S3_SECRET"));
+        BasicAWSCredentials awsCreds = new BasicAWSCredentials("AKIA6B5X4HMKTQI5FP4Y", "XZayYiJQON/WSVU592411liHBrNhOTxsZWyWy2+1");
         AWSStaticCredentialsProvider awsStaticCredentialsProvider = new AWSStaticCredentialsProvider(awsCreds);
         return AmazonComprehendClientBuilder.standard().withCredentials(awsStaticCredentialsProvider)
                 .withRegion("us-east-2").build();
